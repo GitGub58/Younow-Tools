@@ -179,7 +179,8 @@ function downloadLiveStream(live) {
                 let filename = createFilename(live) + "." + main_1.settings.videoFormat;
                 let exists = yield dos.exists(filename);
                 if (!exists) {
-                    let params = `-i rtmp://${live.media.host}${live.media.app}/${live.media.stream} ${main_1.settings.useFFMPEG} ${filename}`.split(" ");
+                    let params = `-i rtmp://${live.media.host}${live.media.app}/${live.media.stream} ${main_1.settings.useFFMPEG}`.split(" ");
+                    params.push(filename);
                     let ffmpeg = child_process_1.spawn("ffmpeg", params);
                     ffmpeg.on("error", err => {
                         reject(err);
